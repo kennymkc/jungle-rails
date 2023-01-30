@@ -60,6 +60,12 @@ RSpec.describe User, type: :model do
       expect(subject).to_not be_valid
       expect(subject.errors.full_messages).to include("Last name can't be blank")
     end
+
+    it 'is not valid if password length is less than 6' do
+      subject.password = "12345"
+      expect(subject).to_not be_valid
+      expect(subject.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+    end
     
   end
 end
