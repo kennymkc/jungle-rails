@@ -69,4 +69,14 @@ RSpec.describe User, type: :model do
     end
     
   end
+
+  describe '.authenticate_with_credentials' do
+
+    it 'should login user if credentials are authenticated' do
+      authenticate = User.authenticate_with_credentials(subject.email, subject.password)
+      expect(authenticate).to eq(subject)
+    end
+
+  end
+
 end
