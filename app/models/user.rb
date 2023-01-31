@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
 
   def self.authenticate_with_credentials(email, password)
-    user = User.find_by_email(email)
+    user = User.find_by_email(email.strip.downcase)
 
     # If the user exists AND the password entered is correct.
     if user && user.authenticate(password)

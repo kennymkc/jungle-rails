@@ -77,6 +77,16 @@ RSpec.describe User, type: :model do
       expect(authenticate).to eq(subject)
     end
 
+    it 'should still authenticate with white spaces before/after email' do
+      authenticate = User.authenticate_with_credentials(" test@test.com ", subject.password)
+      expect(authenticate).to eq(subject)
+    end
+
+     it 'should still authenticate if email is in wrong case' do
+      authenticate = User.authenticate_with_credentials("tEsT@TeSt.cOM", subject.password)
+      expect(authenticate).to eq(subject)
+    end
+
   end
 
 end
